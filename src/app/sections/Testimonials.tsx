@@ -9,14 +9,23 @@ import TestLogo_2 from "../assets/test-logo2.svg";
 import TestLogo_3 from "../assets/test-logo3.svg";
 import TestLogo_4 from "../assets/test-logo4.svg";
 
+// Remove or comment out the unused interface
+// interface Testimonial {
+//   id: number;
+//   name: string;
+//   role?: string;
+//   content: string;
+//   // ... add other properties as needed
+// }
+
 const Testimonials = () => {
-	const sliderRef = useRef(null);
+	const sliderRef = useRef<HTMLDivElement | null>(null);
 	const cnt = 8;
 	const [curIdx, setCurIdx] = useState(0);
 
 	useEffect(() => {
 		if (sliderRef.current) {
-			const amount = parseFloat(window.getComputedStyle(sliderRef.current.firstChild).width);
+			const amount = parseFloat(window.getComputedStyle(sliderRef.current.firstChild as HTMLElement).width);
 			const newTransform = `translateX(-${amount * curIdx}px)`;
 			sliderRef.current.style.transform = newTransform;
 		}
